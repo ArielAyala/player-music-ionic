@@ -1,5 +1,7 @@
 {
   "name": "platzi-music-ionic",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
