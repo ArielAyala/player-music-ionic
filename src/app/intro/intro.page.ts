@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intro',
@@ -16,7 +17,7 @@ export class IntroPage implements OnInit {
 
   slides = [{
     imageSrc: "assets/img/logo.png",
-    imageAlt: "Platzi music logo",
+    imageAlt: 'Platzi music logo',
     title: "Escucha tu música",
     subTitle: "EN CUALQUIER LUGAR",
     description: `Los mejores álbumes, las mejores canciones. 
@@ -40,7 +41,12 @@ export class IntroPage implements OnInit {
     icon: "play"
   }]
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  finish() {
+    this.router.navigateByUrl("/home")
+    console.log("HOla")
+  }
 
   ngOnInit() {
   }
