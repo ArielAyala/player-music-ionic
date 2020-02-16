@@ -1,11 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <h1>Hola Cinthia Victoria</h1>
+<ion-content padding>
+  <ion-slides pager="true" [options]= "slideOpt">
+    <ion-slide>
+      <img src="assets/img/logo.png" alt="" />
+      <h1>Cinthia</h1>
+      <h2>EN CUALQUIER LUGAR</h2>
+      <p>
+        Los mejores álbumes, las mejores canciones. Escucha y comparte en
+        cualquier momento.
+      </p>
+      <ion-icon name="play"></ion-icon>
+    </ion-slide>
+    <ion-slide>
+      <h1>Victoria</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 3</h1>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
