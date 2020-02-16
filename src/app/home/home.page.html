@@ -1,14 +1,13 @@
 <ion-content padding>
-  <ion-slides pager="true" [options]= "slideOpt">
-    <ion-slide>
+  <ion-slides pager="true" [options]="slideOpt">
+    <ion-slide *ngFor="let slide of slides">
       <img src="assets/img/logo.png" alt="" />
-      <h1>Cinthia</h1>
-      <h2>EN CUALQUIER LUGAR</h2>
+      <h1>{{slide.title}}</h1>
+      <h2>{{slide.subTitle}}</h2>
       <p>
-        Los mejores álbumes, las mejores canciones. Escucha y comparte en
-        cualquier momento.
+        {{slide.description}}
       </p>
-      <ion-icon name="play"></ion-icon>
+    <ion-icon name="{{slide.icon}}"></ion-icon>
     </ion-slide>
     <ion-slide>
       <h1>Victoria</h1>
