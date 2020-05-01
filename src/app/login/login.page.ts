@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthenticateService } from '../services/authenticate.service';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticateService,
-    private navController: NavController
+    private navController: NavController,
+    private storage: Storage
   ) {
 
     this.loginForm = this.formBuilder.group({
@@ -59,8 +61,9 @@ export class LoginPage implements OnInit {
   loginUser(credentials) {
     this.authService.loginUser(credentials).then(res => {
       this.errorMessage = '';
+      this.storage.set('isUserLoggedIn', true);
       this.navController.navigateForward('/home')
-    })
+    }).catch(err => this.errorMessage = err)
   }
 
 }
