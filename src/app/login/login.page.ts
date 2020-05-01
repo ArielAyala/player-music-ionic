@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthenticateService } from '../services/authenticate.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -27,9 +29,15 @@ export class LoginPage implements OnInit {
       type: "minlength",
       message: "Mínimo 5 letras para el password"
     }]
-  }
+  };
 
-  constructor(private formBuilder: FormBuilder) {
+  errorMessage: string = '';
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthenticateService,
+    private navController: NavController
+  ) {
 
     this.loginForm = this.formBuilder.group({
       email: new FormControl("", Validators.compose([
@@ -46,6 +54,13 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  loginUser(credentials) {
+    this.authService.loginUser(credentials).then(res => {
+      this.errorMessage = '';
+      this.navController.navigateForward('/home')
+    })
   }
 
 }
