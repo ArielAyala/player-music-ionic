@@ -8,21 +8,21 @@ import { PlatziMusicService } from '../services/platzi-music.service';
 })
 export class HomePage {
 
-  artists = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
   slideOps = {
     initialSlide: 2,
     slidesPerView: 4,
     centeredSlides: true,
     speed: 400
   };
-  songs:any[] = [];
-  albums:any[] = [];
+  songs: any[] = [];
+  albums: any[] = [];
+  artists: any[] = [];
 
   constructor(private musicService: PlatziMusicService) { }
 
   ionViewDidEnter() {
     this.musicService.getNewReleases().then(newReleases => {
-      this.artists = newReleases.albums.items;
+      this.artists = this.musicService.getArtists();
       this.songs = newReleases.albums.items.filter(e => e.album_type == 'single');
       this.albums = newReleases.albums.items.filter(e => e.album_type == 'album');
     })
