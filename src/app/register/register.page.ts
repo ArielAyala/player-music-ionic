@@ -2,17 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthenticateService } from '../services/authenticate.service';
 import { NavController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
-
-  loginForm: FormGroup;
+export class RegisterPage implements OnInit {
+  registerForm: FormGroup;
   validation_messages = {
+    nombre: [{
+      type: "required",
+      message: "El nombre es requerido"
+    }
+    ],
+    apellido: [{
+      type: "required",
+      message: "El nombre es requerido"
+    }
+    ],
     email: [{
       type: "required",
       message: "El email es requerido"
@@ -35,13 +43,15 @@ export class LoginPage implements OnInit {
   errorMessage: string = '';
 
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthenticateService,
-    private navController: NavController,
-    private storage: Storage
+    private formBuilder: FormBuilder
   ) {
-
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
+      nombre: new FormControl("", Validators.compose([
+        Validators.required
+      ])),
+      apellido: new FormControl("", Validators.compose([
+        Validators.required
+      ])),
       email: new FormControl("", Validators.compose([
         Validators.required,
         Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
@@ -51,23 +61,10 @@ export class LoginPage implements OnInit {
         Validators.minLength(5)
       ]))
     })
-
-
   }
 
   ngOnInit() {
   }
 
-  loginUser(credentials) {
-    this.authService.loginUser(credentials).then(res => {
-      this.errorMessage = '';
-      this.storage.set('isUserLoggedIn', true);
-      this.navController.navigateForward('/home')
-    }).catch(err => this.errorMessage = err)
-  }
-
-  goToRegister() {
-    this.navController.navigateForward('/register');
-  }
 
 }
