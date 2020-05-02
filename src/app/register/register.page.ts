@@ -43,7 +43,9 @@ export class RegisterPage implements OnInit {
   errorMessage: string = '';
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private navController: NavController,
+    private authService: AuthenticateService
   ) {
     this.registerForm = this.formBuilder.group({
       nombre: new FormControl("", Validators.compose([
@@ -64,6 +66,16 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  register(userData) {
+    this.authService.registerUser(userData).then(() => {
+      this.navController.navigateBack('/login');
+    })
+  }
+
+  goToLogin() {
+    this.navController.navigateBack('/login');
   }
 
 
