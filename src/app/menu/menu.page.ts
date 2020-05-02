@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController, NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-menu',
@@ -7,13 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private menu: MenuController,
+    private navController: NavController,
+    private storage: Storage
+  ) { }
 
   ngOnInit() {
   }
 
-  closeMenu(){
-    
+  closeMenu() {
+    this.menu.close();
+  }
+
+  logout() {
+    this.storage.remove('isUserLoggedIn')
+    this.navController.navigateRoot('login');
   }
 
 }
