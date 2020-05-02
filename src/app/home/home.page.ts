@@ -45,4 +45,12 @@ export class HomePage {
     })
     return await modal.present();
   }
+
+  play() {
+    this.song.playing = true;
+  }
+  pause() {
+    this.song.playing = false;
+
+  }
 }
