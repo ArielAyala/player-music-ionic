@@ -48,12 +48,12 @@ export class HomePage {
   }
 
   play() {
-    this.currentSong = new Audio(this.song.preview_url);
-    this.currentSong.play();
-    this.currentSong.addEventListener("timeupdate", () => {
-      this.newTime = (this.currentSong.currentTime * (this.currentSong.duration / 10)) / 100;
-    })
-    this.song.playing = true;
+    // this.currentSong = new Audio(this.song.preview_url);
+    // this.currentSong.play();
+    // this.currentSong.addEventListener("timeupdate", () => {
+    //   this.newTime = (this.currentSong.currentTime * (this.currentSong.duration / 10)) / 100;
+    // })
+    // this.song.playing = true;
   }
   pause() {
     this.currentSong.pause();

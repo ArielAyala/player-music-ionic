@@ -27,4 +27,8 @@ export class MenuPage implements OnInit {
     this.navController.navigateRoot('login');
   }
 
+  goToSettings() {
+    this.navController.navigateRoot('menu/settings');
+  }
+
 }
