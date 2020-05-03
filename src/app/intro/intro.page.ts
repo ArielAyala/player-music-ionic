@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: './intro.page.html',
   styleUrls: ['./intro.page.scss'],
 })
-export class IntroPage implements OnInit {
+export class IntroPage {
 
   slideOps = {
     initialSlide: 0,
@@ -46,10 +46,9 @@ export class IntroPage implements OnInit {
 
   finish() {
     this.storage.set('isIntroShowed', true)
-    this.router.navigateByUrl("/menu/home")
+    this.router.navigateByUrl("/login")
   }
 
-  ngOnInit() {
-  }
+
 
 }

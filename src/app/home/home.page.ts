@@ -19,8 +19,16 @@ export class HomePage {
   songs: any[] = [];
   albums: any[] = [];
   artists: any[] = [];
-  song = {};
-  currentSong = {};
+  song: {
+    preview_url: string;
+    playing: boolean;
+    name: string;
+  } = {
+      preview_url: '',
+      playing: false,
+      name: ''
+    };
+  currentSong: HTMLAudioElement;
   newTime;
   constructor(private musicService: PlatziMusicService, private modalController: ModalController) { }
 
@@ -48,12 +56,12 @@ export class HomePage {
   }
 
   play() {
-    // this.currentSong = new Audio(this.song.preview_url);
-    // this.currentSong.play();
-    // this.currentSong.addEventListener("timeupdate", () => {
-    //   this.newTime = (this.currentSong.currentTime * (this.currentSong.duration / 10)) / 100;
-    // })
-    // this.song.playing = true;
+    this.currentSong = new Audio(this.song.preview_url);
+    this.currentSong.play();
+    this.currentSong.addEventListener("timeupdate", () => {
+      this.newTime = (this.currentSong.currentTime * (this.currentSong.duration / 10)) / 100;
+    })
+    this.song.playing = true;
   }
   pause() {
     this.currentSong.pause();
@@ -61,7 +69,7 @@ export class HomePage {
 
   }
 
-  parseTime(time = "0.00") {
+  parseTime(time: number) {
     if (time) {
       const parTime = parseInt(time.toString().split('.')[0], 10);
       let minutes = Math.floor(parTime / 60).toString();
@@ -75,5 +83,5 @@ export class HomePage {
       return minutes + ':' + seconds;
     }
   }
-  
+
 }
